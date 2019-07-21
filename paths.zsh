@@ -14,7 +14,7 @@ prependpath () {
     *:"$1":*)
     ;;
     *)
-    PATH="${PATH:+$PATH:}$1"
+    PATH="$1${PATH:+$PATH:}"
   esac
 }
 
@@ -32,6 +32,6 @@ prependfpath () {
     *:"$1":*)
     ;;
     *)
-    FPATH="${FPATH:+$FPATH:}$1"
+    FPATH="$1${FPATH:+$FPATH:}"
   esac
 }
