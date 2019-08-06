@@ -45,7 +45,6 @@ path() {
       sub(\"/bin\",\"${c[red]}${c_bold}/bin${c[blue]}${c_bold}\"); \
       sub(\"/\\\\.bin\",\"${c[red]}${c_bold}/.bin${c[blue]}${c_bold}\"); \
       sub(\"/games\",\"${c[blue]}${c_bold}/games${c[blue]}${c_bold}\"); \
-      sub(\"/X11\",\"${c[blue]}${c_bold}/X11${c[blue]}${c_bold}\"); \
       sub(\"/opt\",\"${c[cyan]}${c_bold}/opt${c[blue]}${c_bold}\"); \
       sub(\"/sbin\",\"${c[magenta]}${c_bold}/sbin${c[blue]}${c_bold}\"); \
       sub(\"/local\",\"${c[yellow]}${c_bold}/local${c[blue]}${c_bold}\"); \
