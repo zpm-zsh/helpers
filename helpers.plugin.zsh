@@ -1,7 +1,14 @@
 #!/usr/bin/env zsh
 
+DEPENDENCES_ZSH+=( zpm-zsh/colors )
+
+if command -v zpm >/dev/null; then
+  zpm zpm-zsh/colors
+fi
+
 source ${${(%):-%x}:a:h}/path.plugin.zsh
 source ${${(%):-%x}:a:h}/hyperlink.plugin.zsh
+source ${${(%):-%x}:a:h}/debug.plugin.zsh
 
 source ${${(%):-%x}:a:h}/check-if.plugin.zsh
 source ${${(%):-%x}:a:h}/is-recursive-exist.plugin.zsh
