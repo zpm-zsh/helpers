@@ -5,7 +5,7 @@ appendpath () {
     *:"$1":*)
     ;;
     *)
-    PATH="${PATH:+$PATH:}$1"
+    PATH="${PATH:+$PATH:}${1:A}"
   esac
 }
 
@@ -14,7 +14,7 @@ prependpath () {
     *:"$1":*)
     ;;
     *)
-    PATH="$1${PATH:+$PATH:}"
+    PATH="${1:A}${PATH:+$PATH:}"
   esac
 }
 
@@ -23,7 +23,7 @@ appendfpath () {
     *:"$1":*)
     ;;
     *)
-    FPATH="${FPATH:+$FPATH:}$1"
+    FPATH="${FPATH:+$FPATH:}${1:A}"
   esac
 }
 
@@ -32,7 +32,7 @@ prependfpath () {
     *:"$1":*)
     ;;
     *)
-    FPATH="$1${FPATH:+$FPATH:}"
+    FPATH="${1:A}${FPATH:+$FPATH:}"
   esac
 }
 
