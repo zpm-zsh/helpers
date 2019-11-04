@@ -2,7 +2,7 @@
 
 DEPENDENCES_ZSH+=( zpm-zsh/colors )
 
-if command -v zpm >/dev/null; then
+if (( $+function[zpm] )); then
   zpm zpm-zsh/colors
 fi
 
