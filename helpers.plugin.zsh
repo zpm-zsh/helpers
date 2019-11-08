@@ -8,7 +8,7 @@ _DIRNAME="${0:h}"
 DEPENDENCES_ZSH+=( zpm-zsh/colors )
 
 if (( $+functions[zpm] )); then
-  zpm zpm-zsh/colors
+  zpm zpm-zsh/colors,inline
 fi
 
 source "${_DIRNAME}/path.plugin.zsh"
