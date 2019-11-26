@@ -120,7 +120,7 @@ function debug() {
 
 function check-if(){
   if [[ "$1" == 'linux' ]]; then
-    [[ "$(uname)" == "Linux"*  ]] && return 0 || return 1
+    [[ "${OSTYPE}" == "linux-gnu"  ]] && return 0 || return 1
   fi
   
   if [[ "$1" == 'bsd' ]]; then
@@ -132,21 +132,17 @@ function check-if(){
   fi
   
   if [[ "$1" == 'android' ]]; then
-    [[ "$OSTYPE" == "linux-android"* ]] && return 0 || return 1
+    [[ "${OSTYPE}" == "linux-android"* ]] && return 0 || return 1
   fi
   
   if [[ "$1" == 'termux' ]]; then
-    [[ "$OSTYPE" == "linux-android"* ]] && return 0 || return 1
+    [[ "${OSTYPE}" == "linux-android"* ]] && return 0 || return 1
   fi
   
   if [[ "$1" == 'ssh' ]]; then
     [[ ! -z "$SSH_CONNECTION"  ]] && return 0 || return 1
   fi
-  
-  if [[ "$1" == 'tmux' ]]; then
-    [[ ! -z "$TMUX"  ]] && return 0 || return 1
-  fi
-  
+    
   return 1
 }
 alias is=check-if
