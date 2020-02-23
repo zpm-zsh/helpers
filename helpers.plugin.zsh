@@ -1,7 +1,5 @@
 #!/usr/bin/env zsh
 
-DEPENDENCES_ZSH+=( zpm-zsh/colors )
-
 if (( $+functions[zpm] )); then
   zpm zpm-zsh/colors,inline
 fi
@@ -81,6 +79,7 @@ fpath() {
 }
 
 p() {
+  local pa
   pa=$(pwd)
   pa=${pa//\//${c[red]}${c_bold}\/${c[blue]}${c_bold}}
   pa=${c[blue]}${c_bold}$pa
@@ -104,6 +103,7 @@ hyperlink-file-pr(){
 }
 
 function debug() {
+  local num
   if [[ -n "$DEBUG" &&  "${1}:" == "${DEBUG}:"*  ]]; then
     num=0
     
