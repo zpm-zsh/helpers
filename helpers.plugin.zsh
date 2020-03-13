@@ -1,43 +1,31 @@
 #!/usr/bin/env zsh
 
 if (( $+functions[zpm] )); then
-  zpm zpm-zsh/colors,inline
+  zpm zpm-zsh/colors
 fi
 
 appendpath () {
-  case ":$PATH:" in
-    *:"$1":*)
-    ;;
-    *)
-      PATH="${PATH:+$PATH:}${1:A}"
-  esac
+  if [[ ":${PATH}:" != *":${1}:"* ]]; then
+    PATH="${PATH:+$PATH:}${1:A}"
+  fi
 }
 
 prependpath () {
-  case ":$PATH:" in
-    *:"$1":*)
-    ;;
-    *)
-      PATH="${1:A}${PATH:+$PATH:}"
-  esac
+  if [[ ":${PATH}:" != *":${1}:"* ]]; then
+    PATH="${1:A}${PATH:+$PATH:}"
+  fi
 }
 
 appendfpath () {
-  case ":$FPATH:" in
-    *:"$1":*)
-    ;;
-    *)
-      FPATH="${FPATH:+$FPATH:}${1:A}"
-  esac
+  if [[ ":${FPATH}:" != *":${1}:"* ]]; then
+    FPATH="${FPATH:+$FPATH:}${1:A}"
+  fi
 }
 
 prependfpath () {
-  case ":$FPATH:" in
-    *:"$1":*)
-    ;;
-    *)
-      FPATH="${1:A}${FPATH:+$FPATH:}"
-  esac
+  if [[ ":${FPATH}:" != *":${1}:"* ]]; then
+    FPATH="${1:A}${FPATH:+$FPATH:}"
+  fi
 }
 
 path() {
@@ -120,27 +108,27 @@ function debug() {
 
 function check-if(){
   if [[ "$1" == 'linux' ]]; then
-    [[ "${OSTYPE}" == "linux-gnu"  ]] && return 0 || return 1
+    [[ "${OSTYPE}" == "linux-gnu" ]] || return 1
   fi
   
   if [[ "$1" == 'bsd' ]]; then
-    [[ "$(uname)" == *"BSD"*  ]] && return 0 || return 1
+    [[ "$(uname)" == *"BSD"* ]] || return 1
   fi
   
   if [[ "$1" == 'macos' ]]; then
-    [[ "$(uname)" == "Darwin"*  ]] && return 0 || return 1
+    [[ "$(uname)" == "Darwin"* ]] || return 1
   fi
   
   if [[ "$1" == 'android' ]]; then
-    [[ "${OSTYPE}" == "linux-android"* ]] && return 0 || return 1
+    [[ "${OSTYPE}" == "linux-android"* ]] || return 1
   fi
   
   if [[ "$1" == 'termux' ]]; then
-    [[ "${OSTYPE}" == "linux-android"* ]] && return 0 || return 1
+    [[ "${OSTYPE}" == "linux-android"* ]] || return 1
   fi
   
   if [[ "$1" == 'ssh' ]]; then
-    [[ ! -z "$SSH_CONNECTION"  ]] && return 0 || return 1
+    [[ ! -z "$SSH_CONNECTION" ]] || return 1
   fi
   
   if [[ "$1" == 'vte' ]]; then
