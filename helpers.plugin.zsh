@@ -108,31 +108,31 @@ function debug() {
 
 function check-if(){
   if [[ "$1" == 'linux' ]]; then
-    [[ "${OSTYPE}" == "linux-gnu" ]] || return 1
+    [[ "${OSTYPE}" == "linux-gnu" ]] && return 0 || return 1
   fi
   
   if [[ "$1" == 'bsd' ]]; then
-    [[ "$(uname)" == *"BSD"* ]] || return 1
+    [[ "$(uname)" == *"BSD"* ]] && return 0 || return 1
   fi
   
   if [[ "$1" == 'macos' ]]; then
-    [[ "$(uname)" == "Darwin"* ]] || return 1
+    [[ "$(uname)" == "Darwin"* ]] && return 0 || return 1
   fi
   
   if [[ "$1" == 'android' ]]; then
-    [[ "${OSTYPE}" == "linux-android"* ]] || return 1
+    [[ "${OSTYPE}" == "linux-android"* ]] && return 0 || return 1
   fi
   
   if [[ "$1" == 'termux' ]]; then
-    [[ "${OSTYPE}" == "linux-android"* ]] || return 1
+    [[ "${OSTYPE}" == "linux-android"* ]] && return 0 || return 1
   fi
   
   if [[ "$1" == 'ssh' ]]; then
-    [[ ! -z "$SSH_CONNECTION" ]] || return 1
+    [[ ! -z "$SSH_CONNECTION" ]] && return 0 || return 1
   fi
   
   if [[ "$1" == 'vte' ]]; then
-    [ "${VTE_VERSION:-0}" -ge 3405 ] || return 1
+    [ "${VTE_VERSION:-0}" -ge 3405 ] && return 0 || return 1
   fi
 
   return 1
