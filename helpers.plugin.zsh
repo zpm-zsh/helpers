@@ -142,7 +142,11 @@ function check-if(){
   if [[ "$1" == 'ssh' ]]; then
     [[ ! -z "$SSH_CONNECTION"  ]] && return 0 || return 1
   fi
-    
+  
+  if [[ "$1" == 'vte' ]]; then
+    [ "${VTE_VERSION:-0}" -ge 3405 ] || return 1
+  fi
+
   return 1
 }
 alias is=check-if
