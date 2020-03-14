@@ -6,25 +6,25 @@ fi
 
 appendpath () {
   if [[ ":${PATH}:" != *":${1}:"* ]]; then
-    PATH="${PATH:+$PATH:}${1:A}"
+    PATH="${PATH}:${1:A}"
   fi
 }
 
 prependpath () {
   if [[ ":${PATH}:" != *":${1}:"* ]]; then
-    PATH="${1:A}${PATH:+$PATH:}"
+    PATH="${1:A}:${PATH}"
   fi
 }
 
 appendfpath () {
   if [[ ":${FPATH}:" != *":${1}:"* ]]; then
-    FPATH="${FPATH:+$FPATH:}${1:A}"
+    FPATH="${FPATH}:${1:A}"
   fi
 }
 
 prependfpath () {
   if [[ ":${FPATH}:" != *":${1}:"* ]]; then
-    FPATH="${1:A}${FPATH:+$FPATH:}"
+    FPATH="${1:A}:${FPATH}"
   fi
 }
 
