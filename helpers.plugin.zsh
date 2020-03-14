@@ -94,7 +94,7 @@ function check-if(){
   fi
 
   if [[ "$1" == 'ssh' ]]; then
-    [[ ! -z "$SSH_CONNECTION" ]] && return 0 || return 1
+    [[ -n "$SSH_CONNECTION" ]] && return 0 || return 1
   fi
 
   if [[ "$1" == 'vte' ]]; then
