@@ -1,8 +1,18 @@
 #!/usr/bin/env zsh
+# Standarized $0 handling, following:
+# https://github.com/zdharma/Zsh-100-Commits-Club/blob/master/Zsh-Plugin-Standard.adoc
+0="${${ZERO:-${0:#$ZSH_ARGZERO}}:-${(%):-%N}}"
+0="${${(M)0:#/*}:-$PWD/$0}"
 
 if (( $+functions[zpm] )); then
   zpm zpm-zsh/colors
 fi
+
+if [[ $PMSPEC != *f* ]] {
+    fpath+=( "${0:h}/functions" )
+}
+
+autoload -Uz path fpath p 
 
 appendpath () {
   if [[ ":${PATH}:" != *":${1}:"* ]]; then
@@ -26,52 +36,6 @@ prependfpath () {
   if [[ ":${FPATH}:" != *":${1}:"* ]]; then
     FPATH="${1:A}:${FPATH}"
   fi
-}
-
-path() {
-  echo -n "${c[blue]}${c_bold}"
-  echo $PATH | tr ":" "\n" |                                                    \
-  awk "{                                                                        \
-      sub(\"$HOME\",\"${c[cyan]}${c_bold}$HOME${c[blue]}${c_bold}\");           \
-      sub(\"/usr\",\"${c[green]}${c_bold}/usr${c[blue]}${c_bold}\");            \
-      sub(\"/bin\",\"${c[red]}${c_bold}/bin${c[blue]}${c_bold}\");              \
-      sub(\"/\\\\.bin\",\"${c[red]}${c_bold}/.bin${c[blue]}${c_bold}\");        \
-      sub(\"/sbin\",\"${c[red]}${c_bold}/sbin${c[blue]}${c_bold}\");            \
-      sub(\"/games\",\"${c[blue]}${c_bold}/games${c[blue]}${c_bold}\");         \
-      sub(\"/opt\",\"${c[cyan]}${c_bold}/opt${c[blue]}${c_bold}\");             \
-      sub(\"/local\",\"${c[yellow]}${c_bold}/local${c[blue]}${c_bold}\");       \
-      sub(\"/\\\\.local\",\"${c[yellow]}${c_bold}/.local${c[blue]}${c_bold}\"); \
-      sub(\"/lib\",\"${c[magenta]}${c_bold}/lib${c[blue]}${c_bold}\");          \
-      print }                                                                   \
-  "
-  echo -n "$c_reset"
-}
-
-fpath() {
-  echo -n "${c[blue]}${c_bold}"
-  echo $FPATH | tr ":" "\n" |                                                   \
-  awk "{                                                                        \
-      sub(\"$HOME\",\"${c[cyan]}${c_bold}$HOME${c[blue]}${c_bold}\");           \
-      sub(\"/usr\",\"${c[green]}${c_bold}/usr${c[blue]}${c_bold}\");            \
-      sub(\"/bin\",\"${c[red]}${c_bold}/bin${c[blue]}${c_bold}\");              \
-      sub(\"/\\\\.bin\",\"${c[red]}${c_bold}/.bin${c[blue]}${c_bold}\");        \
-      sub(\"/sbin\",\"${c[red]}${c_bold}/sbin${c[blue]}${c_bold}\");            \
-      sub(\"/games\",\"${c[blue]}${c_bold}/games${c[blue]}${c_bold}\");         \
-      sub(\"/opt\",\"${c[cyan]}${c_bold}/opt${c[blue]}${c_bold}\");             \
-      sub(\"/local\",\"${c[yellow]}${c_bold}/local${c[blue]}${c_bold}\");       \
-      sub(\"/\\\\.local\",\"${c[yellow]}${c_bold}/.local${c[blue]}${c_bold}\"); \
-      sub(\"/lib\",\"${c[magenta]}${c_bold}/lib${c[blue]}${c_bold}\");          \
-      print }                                                                   \
-  "
-  echo -n "$c_reset"
-}
-
-p() {
-  local pa
-  pa=$(pwd)
-  pa=${pa//\//${c[red]}${c_bold}\/${c[blue]}${c_bold}}
-  pa=${c[blue]}${c_bold}$pa
-  echo $pa
 }
 
 hyperlink(){
