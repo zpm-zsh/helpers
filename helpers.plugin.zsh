@@ -9,92 +9,94 @@ if (( $+functions[zpm] )); then
 fi
 
 if [[ $PMSPEC != *f* ]] {
-    fpath+=( "${0:h}/functions" )
+  fpath+=( "${0:h}/functions" )
 }
 
-autoload -Uz path fpath p 
+autoload -Uz path fpath p
 
-appendpath () {
+function appendpath() {
   if [[ ":${PATH}:" != *":${1}:"* ]]; then
     PATH="${PATH}:${1:A}"
   fi
 }
 
-prependpath () {
+function prependpath() {
   if [[ ":${PATH}:" != *":${1}:"* ]]; then
     PATH="${1:A}:${PATH}"
   fi
 }
 
-appendfpath () {
+function appendfpath() {
   if [[ ":${FPATH}:" != *":${1}:"* ]]; then
     FPATH="${FPATH}:${1:A}"
   fi
 }
 
-prependfpath () {
+function prependfpath() {
   if [[ ":${FPATH}:" != *":${1}:"* ]]; then
     FPATH="${1:A}:${FPATH}"
   fi
 }
 
-hyperlink(){
+function hyperlink() {
   echo -e "\033]8;;${2}\a'${1}\033]8;;\a"
 }
 
-hyperlink-pr(){
+hyperlink-function pr() {
   echo -e "%{\033]8;;${2}\a%}${1}%{\033]8;;\a%}"
 }
 
-hyperlink-file(){
+hyperlink-function file() {
   echo -e "\033]8;;file://${HOSTNAME:-$HOST}${2}\a${1}\033]8;;\a"
 }
 
-hyperlink-file-pr(){
+hyperlink-file-function pr() {
   echo -e "%{\033]8;;file://${HOSTNAME:-$HOST}${2}\a%}${1}%{\033]8;;\a%}"
 }
 
 function debug() {
-  local num
   if [[ -n "$DEBUG" &&  "${1}:" == "${DEBUG}:"*  ]]; then
-    num=0
-    
-    for i in $(seq 1 ${#1}); do
+    local num=0
+    local i=0
+
+    while [[ $i -lt $(( ${#1} + 1 )) ]]; do
       num=$(( $num + $(LC_CTYPE=C printf '%d' "'${1[$i]})") ))
+      i=$(( $i + 1))
     done
+
     color=$(( $num % 6 + 1 ))
-    
+
     echo -n "[1;3${color}m$1 [0m"
     shift
     echo "$@"
   fi
 }
 
-function check-if(){
+function check() -if(){
   if [[ "$1" == 'linux' ]]; then
     [[ "${OSTYPE}" == "linux-gnu" ]] && return 0 || return 1
   fi
-  
+
   if [[ "$1" == 'bsd' ]]; then
     [[ "$(uname)" == *"BSD"* ]] && return 0 || return 1
   fi
-  
+
   if [[ "$1" == 'macos' ]]; then
     [[ "$(uname)" == "Darwin"* ]] && return 0 || return 1
   fi
-  
+
   if [[ "$1" == 'android' ]]; then
     [[ "${OSTYPE}" == "linux-android"* ]] && return 0 || return 1
   fi
-  
+
   if [[ "$1" == 'termux' ]]; then
     [[ "${OSTYPE}" == "linux-android"* ]] && return 0 || return 1
   fi
-  
+
   if [[ "$1" == 'ssh' ]]; then
     [[ ! -z "$SSH_CONNECTION" ]] && return 0 || return 1
   fi
-  
+
   if [[ "$1" == 'vte' ]]; then
     [ "${VTE_VERSION:-0}" -ge 3405 ] && return 0 || return 1
   fi
@@ -103,35 +105,35 @@ function check-if(){
 }
 alias is=check-if
 
-is-recursive-exist(){
+is-recursive-function exist() {
   local r_dir="$PWD"
-    
+
   if [[ -e "$r_dir/$1" ]]; then
     return 0
   fi
-  
+
   while [[ "$r_dir" != "/" ]]; do
     r_dir="${r_dir:h}"
     if [[ -e "$r_dir/$1" ]]; then
       return 0
     fi
   done
-  
+
   return -1
 }
 
 # Checks a boolean variable for "true".
 # Case insensitive: "1", "y", "yes", "t", "true", "o", and "on".
-function is-true() {
+function is() -true() {
   [[ -n "$1" && "$1" == (1|[Yy]([Ee][Ss]|)|[Tt]([Rr][Uu][Ee]|)|[Oo]([Nn]|)) ]]
 }
 
 # Checks if a name is a command, function, or alias.
-function is-callable {
+function is() -callable {
   (( $+commands[$1] || $+functions[$1] || $+aliases[$1] || $+builtins[$1] ))
 }
 
-function is-older() {
+function is() -older() {
   [[ $2 -nt $1 ]]
   return $?
 }
