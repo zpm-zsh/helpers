@@ -42,15 +42,15 @@ function hyperlink() {
   echo -e "\033]8;;${2}\a'${1}\033]8;;\a"
 }
 
-hyperlink-function pr() {
+hyperlink-pr() {
   echo -e "%{\033]8;;${2}\a%}${1}%{\033]8;;\a%}"
 }
 
-hyperlink-function file() {
+hyperlink-file() {
   echo -e "\033]8;;file://${HOSTNAME:-$HOST}${2}\a${1}\033]8;;\a"
 }
 
-hyperlink-file-function pr() {
+hyperlink-file-pr() {
   echo -e "%{\033]8;;file://${HOSTNAME:-$HOST}${2}\a%}${1}%{\033]8;;\a%}"
 }
 
@@ -72,7 +72,7 @@ function debug() {
   fi
 }
 
-function check() -if(){
+function check-if(){
   if [[ "$1" == 'linux' ]]; then
     [[ "${OSTYPE}" == "linux-gnu" ]] && return 0 || return 1
   fi
@@ -105,7 +105,7 @@ function check() -if(){
 }
 alias is=check-if
 
-is-recursive-function exist() {
+is-recursive-exist() {
   local r_dir="$PWD"
 
   if [[ -e "$r_dir/$1" ]]; then
@@ -124,16 +124,16 @@ is-recursive-function exist() {
 
 # Checks a boolean variable for "true".
 # Case insensitive: "1", "y", "yes", "t", "true", "o", and "on".
-function is() -true() {
+function is_true() {
   [[ -n "$1" && "$1" == (1|[Yy]([Ee][Ss]|)|[Tt]([Rr][Uu][Ee]|)|[Oo]([Nn]|)) ]]
 }
 
 # Checks if a name is a command, function, or alias.
-function is() -callable {
+function is_callable {
   (( $+commands[$1] || $+functions[$1] || $+aliases[$1] || $+builtins[$1] ))
 }
 
-function is() -older() {
+function is_older() {
   [[ $2 -nt $1 ]]
   return $?
 }
