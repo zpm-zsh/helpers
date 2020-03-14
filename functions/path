@@ -6,7 +6,7 @@ path() {
   awk "{                                                                        \
       sub(\"$HOME\",\"${c[cyan]}${c_bold}$HOME${c[blue]}${c_bold}\");           \
       sub(\"/usr\",\"${c[green]}${c_bold}/usr${c[blue]}${c_bold}\");            \
-      sub(\"/functions\",\"${c[red]}${c_bold}/bin${c[blue]}${c_bold}\");        \
+      sub(\"/functions\",\"${c[red]}${c_bold}/functions${c[blue]}${c_bold}\");  \
       sub(\"/bin\",\"${c[red]}${c_bold}/bin${c[blue]}${c_bold}\");              \
       sub(\"/\\\\.bin\",\"${c[red]}${c_bold}/.bin${c[blue]}${c_bold}\");        \
       sub(\"/sbin\",\"${c[red]}${c_bold}/sbin${c[blue]}${c_bold}\");            \
