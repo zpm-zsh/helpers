@@ -1,5 +1,5 @@
 #!/usr/bin/env zsh
 
-hyperlink-function pr() {
+hyperlink-pr() {
   echo -e "%{\033]8;;${2}\a%}${1}%{\033]8;;\a%}"
 }

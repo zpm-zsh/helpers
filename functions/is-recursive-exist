@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-is-recursive-function exist() {
+is-recursive-exist() {
   local r_dir="$PWD"
 
   if [[ -e "$r_dir/$1" ]]; then
