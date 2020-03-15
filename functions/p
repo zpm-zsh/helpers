@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-p() {
+function p() {
   local pa
   pa=$(pwd)
   pa=${pa//\//${c[red]}${c_bold}\/${c[blue]}${c_bold}}

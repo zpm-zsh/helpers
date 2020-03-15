@@ -1,0 +1,7 @@
+#!/usr/bin/env zsh
+
+function prependpath() {
+  if [[ ":${PATH}:" != *":${1}:"* ]]; then
+    PATH="${1:A}:${PATH}"
+  fi
+}

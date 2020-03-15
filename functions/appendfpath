@@ -1,0 +1,7 @@
+#!/usr/bin/env zsh
+
+function appendfpath() {
+  if [[ ":${FPATH}:" != *":${1}:"* ]]; then
+    FPATH="${FPATH}:${1:A}"
+  fi
+}
