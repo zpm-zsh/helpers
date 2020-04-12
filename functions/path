@@ -17,5 +17,5 @@ function path() {
       sub(\"/lib\",\"${c[magenta]}${c_bold}/lib${c[blue]}${c_bold}\");          \
       print }                                                                   \
     "
-  echo -n "$c_reset"
+  echo -n "$c[reset]"
 }
