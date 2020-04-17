@@ -3,7 +3,7 @@
 function p() {
   local pa
   pa=$(pwd)
-  pa=${pa//\//${c[red]}${c_bold}\/${c[blue]}${c_bold}}
-  pa=${c[blue]}${c_bold}$pa
+  pa=${pa//\//${c[red]}${c[bold]}\/${c[blue]}${c[bold]}}
+  pa=${c[blue]}${c[bold]}$pa
   echo $pa
 }

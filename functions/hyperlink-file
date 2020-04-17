@@ -1,5 +1,5 @@
 #!/usr/bin/env zsh
 
 hyperlink-file() {
-  echo -e "\033]8;;file://${HOSTNAME:-$HOST}${2}\a${1}\033]8;;\a"
+  echo -e "\033]8;;file://${HOST:-$HOSTNAME}${2}\a${1}\033]8;;\a"
 }
