@@ -1,9 +1,8 @@
 #!/usr/bin/env zsh
 
-function path() {
-  echo -n "${c[blue]}${c[bold]}"
-  echo $PATH | tr ":" "\n" |                                                      \
-    awk "{                                                                        \
+echo -n "${c[blue]}${c[bold]}"
+echo $PATH | tr ":" "\n" |                                                      \
+  awk "{                                                                        \
       sub(\"$HOME\",\"${c[cyan]}${c[bold]}$HOME${c[blue]}${c[bold]}\");           \
       sub(\"/usr\",\"${c[green]}${c[bold]}/usr${c[blue]}${c[bold]}\");            \
       sub(\"/functions\",\"${c[red]}${c[bold]}/functions${c[blue]}${c[bold]}\");  \
@@ -16,6 +15,5 @@ function path() {
       sub(\"/\\\\.local\",\"${c[yellow]}${c[bold]}/.local${c[blue]}${c[bold]}\"); \
       sub(\"/lib\",\"${c[magenta]}${c[bold]}/lib${c[blue]}${c[bold]}\");          \
       print }                                                                     \
-    "
-  echo -n "$c[reset]"
-}
+  "
+echo -n "$c[reset]"

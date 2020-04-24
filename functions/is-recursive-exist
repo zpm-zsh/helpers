@@ -1,18 +1,16 @@
 #!/usr/bin/env zsh
 
-is-recursive-exist() {
-  local r_dir="$PWD"
+local r_dir="$PWD"
 
+if [[ -e "$r_dir/$1" ]]; then
+  return 0
+fi
+
+while [[ "$r_dir" != "/" ]]; do
+  r_dir="${r_dir:h}"
   if [[ -e "$r_dir/$1" ]]; then
     return 0
   fi
+done
 
-  while [[ "$r_dir" != "/" ]]; do
-    r_dir="${r_dir:h}"
-    if [[ -e "$r_dir/$1" ]]; then
-      return 0
-    fi
-  done
-
-  return -1
-}
+return -1

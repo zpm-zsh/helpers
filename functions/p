@@ -1,9 +1,7 @@
 #!/usr/bin/env zsh
 
-function p() {
-  local pa
-  pa=$(pwd)
-  pa=${pa//\//${c[red]}${c[bold]}\/${c[blue]}${c[bold]}}
-  pa=${c[blue]}${c[bold]}$pa
-  echo $pa
-}
+local pa
+pa=$(pwd)
+pa=${pa//\//${c[red]}${c[bold]}\/${c[blue]}${c[bold]}}
+pa=${c[blue]}${c[bold]}$pa
+echo $pa

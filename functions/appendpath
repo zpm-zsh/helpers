@@ -1,7 +1,5 @@
 #!/usr/bin/env zsh
 
-function appendpath() {
-  if [[ ":${PATH}:" != *":${1}:"* ]]; then
-    PATH="${PATH}:${1:A}"
-  fi
-}
+if [[ ":${PATH}:" != *":${1}:"* ]]; then
+  PATH="${PATH}:${1:A}"
+fi
