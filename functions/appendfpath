@@ -1,5 +1,5 @@
 #!/usr/bin/env zsh
 
 if [[ ":${FPATH}:" != *":${1}:"* ]]; then
-  FPATH="${FPATH}:${1:A}"
+  FPATH="${FPATH}:${1}"
 fi

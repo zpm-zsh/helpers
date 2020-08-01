@@ -1,5 +1,5 @@
 #!/usr/bin/env zsh
 
 if [[ ":${PATH}:" != *":${1}:"* ]]; then
-  PATH="${PATH}:${1:A}"
+  PATH="${PATH}:${1}"
 fi
