@@ -28,4 +28,8 @@ if [[ "$1" == 'vte' ]]; then
   [ "${VTE_VERSION:-0}" -ge 3405 ] && return 0 || return 1
 fi
 
+if [[ "$1" == 'openwrt' ]]; then
+  [[ "$+commands[opkg]" == "1" ]] && return 0 || return 1
+fi
+
 return 1
