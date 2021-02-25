@@ -1,5 +1,8 @@
 #!/usr/bin/env zsh
 
-if [[ ":${FPATH}:" != *":${1}:"* ]]; then
-  FPATH="${1:A}:${FPATH}"
-fi
+case ":$FPATH:" in
+  *:"$1":*)
+    ;;
+  *)
+    FPATH="${1}:${FPATH}"
+esac

@@ -1,5 +1,8 @@
 #!/usr/bin/env zsh
 
-if [[ ":${PATH}:" != *":${1}:"* ]]; then
-  PATH="${1:A}:${PATH}"
-fi
+case ":$PATH:" in
+  *:"$1":*)
+    ;;
+  *)
+    PATH="${1}:${PATH}"
+esac
