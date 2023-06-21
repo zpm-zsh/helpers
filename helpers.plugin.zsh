@@ -73,3 +73,4 @@ if [[ "${TERM_PROGRAM}" == "vscode" ]]; then
 else
   is[vscode]=0
 fi
+
