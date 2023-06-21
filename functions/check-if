@@ -36,4 +36,8 @@ if [[ "$1" == 'msys' ]]; then
   [[ "${OSTYPE}" == "msys" ]] && return 0 || return 1
 fi
 
+if [[ "$1" == 'vscode' ]]; then
+  [[ -n "$TERM_PROGRAM" ]] && return 0 || return 1
+fi
+
 return 1
