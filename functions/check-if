@@ -32,4 +32,8 @@ if [[ "$1" == 'openwrt' ]]; then
   [[ "$+commands[opkg]" == "1" ]] && return 0 || return 1
 fi
 
+if [[ "$1" == 'msys' ]]; then
+  [[ "${OSTYPE}" == "msys" ]] && return 0 || return 1
+fi
+
 return 1
