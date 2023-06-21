@@ -13,11 +13,10 @@ autoload -Uz                       \
   path fpath p appendpath          \
   appendfpath prependpath          \
   prependfpath is-recursive-exist  \
-  check-if debug                   \
+  debug                            \
   is-callable is-true              \
   hyperlink hyperlink-pr           \
   hyperlink-file hyperlink-file-pr
-
 
 typeset -Ag is
 
