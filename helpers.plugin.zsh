@@ -9,13 +9,68 @@ if [[ $PMSPEC != *f* ]] {
   fpath+=( "${0:h}/functions" )
 }
 
-autoload -Uz                      \
-  path fpath p appendpath         \
-  appendfpath prependpath         \
-  prependfpath is-recursive-exist \
-  check-if debug                  \
-  is-callable is-true             \
-  hyperlink hyperlink-pr          \
+autoload -Uz                       \
+  path fpath p appendpath          \
+  appendfpath prependpath          \
+  prependfpath is-recursive-exist  \
+  check-if debug                   \
+  is-callable is-true              \
+  hyperlink hyperlink-pr           \
   hyperlink-file hyperlink-file-pr
 
-alias is=check-if
+
+typeset -Ag is
+
+if [[ "${OSTYPE}" == "linux-gnu" ]]; then
+  is[linux]=1
+else
+  is[linux]=0
+fi
+
+if [[ "${OSTYPE}" == *"freebsd"* ]]; then
+  is[bsd]=1
+else
+  is[bsd]=0
+fi
+
+if [[ "${OSTYPE}" == "darwin"* ]]; then
+  is[darwin]=1
+else
+  is[darwin]=0
+fi
+
+if [[ "${OSTYPE}" == "linux-android"* ]]; then
+  is[android]=1
+else
+  is[android]=0
+fi
+
+if [[ -n "$SSH_CONNECTION" ]]; then
+  is[ssh]=1
+else
+  is[ssh]=0
+fi
+
+if [[ "${VTE_VERSION:-0}" -ge 3405 ]]; then
+  is[vte]=1
+else
+  is[vte]=0
+fi
+
+if [[ "$+commands[opkg]" == "1" ]]; then
+  is[openwrt]=1
+else
+  is[openwrt]=0
+fi
+
+if [[ "${OSTYPE}" == "msys" ]]; then
+  is[msys]=1
+else
+  is[msys]=0
+fi
+
+if [[ "${TERM_PROGRAM}" == "vscode" ]]; then
+  is[vscode]=1
+else
+  is[vscode]=0
+fi
