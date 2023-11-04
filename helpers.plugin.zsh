@@ -34,8 +34,10 @@ fi
 
 if [[ "${OSTYPE}" == "darwin"* ]]; then
   is[darwin]=1
+  is[macos]=1
 else
   is[darwin]=0
+  is[macos]=0
 fi
 
 if [[ "${OSTYPE}" == "linux-android"* ]]; then
