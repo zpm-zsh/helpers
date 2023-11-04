@@ -10,9 +10,12 @@ if [[ $PMSPEC != *f* ]] {
 }
 
 autoload -Uz                       \
-  path fpath p appendpath          \
-  appendfpath prependpath          \
-  prependfpath is-recursive-exist  \
+  path fpath p                     \
+  appendpath     prependpath       \
+  appendfpath    prependfpath      \
+  appendmanpath  prependmanpath    \
+  appendinfopath prependinfopath   \
+  is-recursive-exist               \
   debug                            \
   is-callable is-true              \
   hyperlink hyperlink-pr           \
@@ -75,4 +78,3 @@ if [[ "${TERM_PROGRAM}" == "vscode" ]]; then
 else
   is[vscode]=0
 fi
-
