@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+
+case ":$MANPATH:" in
+  *:"$1":*)
+    ;;
+  *)
+    MANPATH="${1}:${MANPATH}"
+esac

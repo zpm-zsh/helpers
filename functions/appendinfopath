@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+
+case ":$INFOPATH:" in
+  *:"$1":*)
+    ;;
+  *)
+    INFOPATH="${INFOPATH:+$INFOPATH:}$1"
+esac
