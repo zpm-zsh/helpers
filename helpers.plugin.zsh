@@ -29,7 +29,7 @@ else
   is[linux]=0
 fi
 
-if [[ "${OSTYPE}" == *"freebsd"* ]]; then
+if [[ "${OSTYPE}" == *"bsd"* ]]; then
   is[bsd]=1
 else
   is[bsd]=0
@@ -41,6 +41,12 @@ if [[ "${OSTYPE}" == "darwin"* ]]; then
 else
   is[darwin]=0
   is[macos]=0
+fi
+
+if [[ "${TERM_PROGRAM}" == "iTerm.app" ]]; then
+  is[iterm]=1
+else
+  is[iterm]=0
 fi
 
 if [[ "${OSTYPE}" == "linux-android"* ]]; then
@@ -61,7 +67,7 @@ else
   is[vte]=0
 fi
 
-if [[ "$+commands[opkg]" == "1" ]]; then
+if [[ "${+commands[opkg]}" == "1" ]]; then
   is[openwrt]=1
 else
   is[openwrt]=0
